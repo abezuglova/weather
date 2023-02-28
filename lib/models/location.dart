@@ -14,4 +14,13 @@ class Location {
     required this.lat,
     required this.lon,
   });
+
+  factory Location.fromJson(Map<String, dynamic> json) => Location(
+        id: json['id'],
+        name: json['name'],
+        region: json['region'],
+        country: json['country'],
+        lat: json['lat'],
+        lon: json['lon'],
+      );
 }
