@@ -1,4 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/pages/forecast_page/forecast_page.dart';
+import 'package:weather_app/repository/weather_report_repository.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,10 +14,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return RepositoryProvider(
+      create: (context) => WeatherReportRepository(
+        Dio(
+          BaseOptions(baseUrl: 'https://weatherapi-com.p.rapidapi.com'),
+        ),
+      ),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const ForecastPage(),
       ),
     );
   }
