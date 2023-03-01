@@ -1,5 +1,4 @@
 class Location {
-  final int id;
   final String name;
   final String region;
   final String country;
@@ -7,7 +6,6 @@ class Location {
   final double lon;
 
   Location({
-    required this.id,
     required this.name,
     required this.region,
     required this.country,
@@ -16,7 +14,6 @@ class Location {
   });
 
   factory Location.fromJson(Map<String, dynamic> json) => Location(
-        id: json['id'],
         name: json['name'],
         region: json['region'],
         country: json['country'],

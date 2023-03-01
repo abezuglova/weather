@@ -3,7 +3,13 @@ import 'package:weather_app/models/current_hour_weather.dart';
 class Forecast {
   final List<ForecastDay> daysForecast;
 
-  Forecast(this.daysForecast);
+  Forecast({required this.daysForecast});
+
+  factory Forecast.fromJson(Map<String, dynamic> json) => Forecast(
+        daysForecast: (json['forecastday'] as List<dynamic>)
+            .map((json) => ForecastDay.fromJson(json))
+            .toList(),
+      );
 }
 
 class ForecastDay {
@@ -20,6 +26,16 @@ class ForecastDay {
     required this.astro,
     required this.hours,
   });
+
+  factory ForecastDay.fromJson(Map<String, dynamic> json) => ForecastDay(
+        date: DateTime.parse(json['date']),
+        dateEpoch: json['date_epoch'],
+        day: DayWeather.fromJson(json['day']),
+        astro: Astro.fromJson(json['astro']),
+        hours: (json['hour'] as List<dynamic>)
+            .map((json) => CurrentHourWeather.fromJson(json))
+            .toList(),
+      );
 }
 
 class DayWeather {
@@ -28,8 +44,7 @@ class DayWeather {
   final double maxwindMph;
   final int dailyChanceOfRain;
   final int dailyChanceOfSnow;
-  final String text;
-  final String icon;
+  final Condition condition;
 
   DayWeather({
     required this.maxtempC,
@@ -37,9 +52,17 @@ class DayWeather {
     required this.maxwindMph,
     required this.dailyChanceOfRain,
     required this.dailyChanceOfSnow,
-    required this.text,
-    required this.icon,
+    required this.condition, 
   });
+
+  factory DayWeather.fromJson(Map<String, dynamic> json) => DayWeather(
+        maxtempC: json['maxtemp_c'],
+        mintempC: json['mintemp_c'],
+        maxwindMph: json['maxwind_mph'],
+        dailyChanceOfRain: json['daily_chance_of_rain'],
+        dailyChanceOfSnow: json['daily_chance_of_snow'],
+        condition: Condition.fromJson(json['condition']),
+      );
 }
 
 class Astro {
@@ -61,5 +84,16 @@ class Astro {
     required this.moonIllumination,
     required this.isMoonUp,
     required this.isSunUp,
-});
+  });
+
+  factory Astro.fromJson(Map<String, dynamic> json) => Astro(
+        sunrise: json['sunrise'],
+        sunset: json['sunset'],
+        moonrise: json['moonrise'],
+        moonset: json['moonset'],
+        moonPhase: json['moon_phase'],
+        moonIllumination: json['moon_illumination'],
+        isMoonUp: json['is_moon_up'],
+        isSunUp: json['is_sun_up'],
+      );
 }
