@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/pages/forecast_page/forecast_page.dart';
 import 'package:weather_app/repository/weather_report_repository.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 

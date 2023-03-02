@@ -5,8 +5,21 @@ class ErrorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Ошибка загрузки'),
+    return ColoredBox(
+      color: Colors.grey,
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: const [
+            Icon(Icons.wifi_off),
+            SizedBox(height: 20),
+            Text(
+              'Нет подключения к сети, прогноз недоступен',
+              style: TextStyle(fontSize: 16),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
