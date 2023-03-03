@@ -1,4 +1,5 @@
 class CurrentHourWeather {
+  final DateTime time;
   final double tempC;
   final int isDay;
   final double windMph;
@@ -7,6 +8,7 @@ class CurrentHourWeather {
   final Condition condition;
 
   CurrentHourWeather({
+    required this.time,
     required this.tempC,
     required this.isDay,
     required this.windMph,
@@ -17,6 +19,7 @@ class CurrentHourWeather {
 
   factory CurrentHourWeather.fromJson(Map<String, dynamic> json) =>
       CurrentHourWeather(
+        time: DateTime.parse(json['time']),
         tempC: json['temp_c'],
         isDay: json['is_day'],
         windMph: json['wind_mph'],

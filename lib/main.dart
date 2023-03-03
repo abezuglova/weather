@@ -24,6 +24,10 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          textTheme: const TextTheme().apply(
+            bodyColor: Colors.white,
+            displayColor: Colors.white,
+          ),
         ),
         home: const ForecastPage(),
       ),

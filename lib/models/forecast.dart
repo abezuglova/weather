@@ -10,6 +10,8 @@ class Forecast {
             .map((json) => ForecastDay.fromJson(json))
             .toList(),
       );
+
+  
 }
 
 class ForecastDay {

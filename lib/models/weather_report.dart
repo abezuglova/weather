@@ -4,7 +4,7 @@ import 'package:weather_app/models/location.dart';
 
 class WeatherReport {
   final Location location;
-  final CurrentHourWeather currentHourWeather;
+  final CurrentWeather currentHourWeather;
   final Forecast forecast;
 
   WeatherReport({
@@ -15,7 +15,49 @@ class WeatherReport {
 
   factory WeatherReport.fromJson(Map<String, dynamic> json) => WeatherReport(
         location: Location.fromJson(json['location']),
-        currentHourWeather: CurrentHourWeather.fromJson(json['current']),
+        currentHourWeather: CurrentWeather.fromJson(json['current']),
         forecast: Forecast.fromJson(json['forecast']),
+      );
+
+  List<CurrentHourWeather> get24hoursForecastFromNow() {
+    final forecast24hours = <CurrentHourWeather>[];
+    final currentTime = DateTime.now().hour + 4;
+    for (int index = currentTime;
+        index < forecast.daysForecast[0].hours.length;
+        index++) {
+      forecast24hours.add(forecast.daysForecast[0].hours[index]);
+    }
+    for (int index = 0; index < currentTime; index++) {
+      forecast24hours.add(forecast.daysForecast[1].hours[index]);
+    }
+    return forecast24hours;
+  }
+}
+
+class CurrentWeather {
+  final double tempC;
+  final int isDay;
+  final double windMph;
+  final String windDir;
+  final double feelslikeC;
+  final Condition condition;
+
+  CurrentWeather({
+    required this.tempC,
+    required this.isDay,
+    required this.windMph,
+    required this.windDir,
+    required this.feelslikeC,
+    required this.condition,
+  });
+
+  factory CurrentWeather.fromJson(Map<String, dynamic> json) =>
+      CurrentWeather(
+        tempC: json['temp_c'],
+        isDay: json['is_day'],
+        windMph: json['wind_mph'],
+        windDir: json['wind_dir'],
+        feelslikeC: json['feelslike_c'],
+        condition: Condition.fromJson(json['condition']),
       );
 }

@@ -11,7 +11,7 @@ class ForecastScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: const Color.fromARGB(255, 174, 205, 246),
+      color: const Color.fromARGB(255, 149, 177, 215),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
         child: ListView(

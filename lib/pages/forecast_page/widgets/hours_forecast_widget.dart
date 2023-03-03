@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:weather_app/models/current_hour_weather.dart';
 import 'package:weather_app/models/weather_report.dart';
 
 class HoursForecastWidget extends StatelessWidget {
@@ -7,6 +9,7 @@ class HoursForecastWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final forecast24hours = weatherReport.get24hoursForecastFromNow();
     return Container(
       decoration: const BoxDecoration(
         color: Color.fromARGB(100, 36, 53, 131),
@@ -37,10 +40,12 @@ class HoursForecastWidget extends StatelessWidget {
             height: 100,
             child: ListView.separated(
               itemBuilder: (BuildContext context, int index) =>
-                  const _OneHourWeatherWidget(),
+                  _OneHourWeatherWidget(
+                currentHourWeather: forecast24hours[index],
+              ),
               scrollDirection: Axis.horizontal,
               separatorBuilder: (context, index) => const SizedBox(width: 10),
-              itemCount: 12,
+              itemCount: forecast24hours.length,
             ),
           ),
         ],
@@ -50,28 +55,33 @@ class HoursForecastWidget extends StatelessWidget {
 }
 
 class _OneHourWeatherWidget extends StatelessWidget {
-  const _OneHourWeatherWidget({super.key});
+  final CurrentHourWeather currentHourWeather;
+  const _OneHourWeatherWidget({super.key, required this.currentHourWeather});
 
   @override
   Widget build(BuildContext context) {
+    // final imageUrl = currentHourWeather.condition.icon.substring(2);
     return SizedBox(
       height: 100,
       width: 60,
       child: Column(
         children: [
           Text(
-            'data',
+            DateFormat('HH').format(currentHourWeather.time),
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 14,
+              fontSize: 18,
             ),
           ),
-          // Image(image: AssetImage('')),
+          const SizedBox(height: 5),
+          // Image.network(imageUrl),
+          const Icon(Icons.cloud, size: 36, color: Colors.white),
+          const SizedBox(height: 5),
           Text(
-            'data',
+            '${currentHourWeather.tempC.round()}°',
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 14,
+              fontSize: 20,
             ),
           ),
         ],
