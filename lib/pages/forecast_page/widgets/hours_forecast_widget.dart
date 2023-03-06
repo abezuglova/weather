@@ -48,6 +48,7 @@ class HoursForecastWidget extends StatelessWidget {
               itemCount: forecast24hours.length,
             ),
           ),
+
         ],
       ),
     );

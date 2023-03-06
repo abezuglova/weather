@@ -4,18 +4,18 @@ import 'package:weather_app/models/location.dart';
 
 class WeatherReport {
   final Location location;
-  final CurrentWeather currentHourWeather;
+  final CurrentWeather currentWeather;
   final Forecast forecast;
 
   WeatherReport({
     required this.location,
-    required this.currentHourWeather,
+    required this.currentWeather,
     required this.forecast,
   });
 
   factory WeatherReport.fromJson(Map<String, dynamic> json) => WeatherReport(
         location: Location.fromJson(json['location']),
-        currentHourWeather: CurrentWeather.fromJson(json['current']),
+        currentWeather: CurrentWeather.fromJson(json['current']),
         forecast: Forecast.fromJson(json['forecast']),
       );
 
@@ -35,6 +35,7 @@ class WeatherReport {
 }
 
 class CurrentWeather {
+  final DateTime lastUpdated;
   final double tempC;
   final int isDay;
   final double windMph;
@@ -43,6 +44,7 @@ class CurrentWeather {
   final Condition condition;
 
   CurrentWeather({
+    required this.lastUpdated,
     required this.tempC,
     required this.isDay,
     required this.windMph,
@@ -53,6 +55,7 @@ class CurrentWeather {
 
   factory CurrentWeather.fromJson(Map<String, dynamic> json) =>
       CurrentWeather(
+        lastUpdated: DateTime.parse(json['last_updated']),
         tempC: json['temp_c'],
         isDay: json['is_day'],
         windMph: json['wind_mph'],

@@ -21,7 +21,7 @@ class CurrentWeatherWidget extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         Text(
-          DateFormat('EEEEE, MMM d').format(DateTime.now()),
+          DateFormat('EEEEE, MMM d').format(weatherReport.currentWeather.lastUpdated),
           style: const TextStyle(fontSize: 20, color: Colors.white,),
         ),
         const SizedBox(height: 10),
@@ -41,7 +41,7 @@ class CurrentWeatherWidget extends StatelessWidget {
               ],
             ),
             Text(
-              '${weatherReport.currentHourWeather.tempC.round()}°',
+              '${weatherReport.currentWeather.tempC.round()}°',
               style: const TextStyle(fontSize: 100, color: Colors.white,),
             ),
             Column(
@@ -60,15 +60,14 @@ class CurrentWeatherWidget extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         Text(
-          weatherReport.currentHourWeather.condition.text,
+          weatherReport.currentWeather.condition.text,
           style: const TextStyle(fontSize: 20, color: Colors.white,),
         ),
         const SizedBox(height: 10),
         Text(
-          'Wind ${weatherReport.currentHourWeather.windMph} mhp',
+          'Wind ${weatherReport.currentWeather.windMph} mhp',
           style: const TextStyle(fontSize: 18, color: Colors.white,),
         ),
-        const SizedBox(height: 30),
       ],
     );
   }
