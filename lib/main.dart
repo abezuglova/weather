@@ -24,7 +24,14 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
-          textTheme: const TextTheme().apply(
+          textTheme: const TextTheme(
+            bodySmall: TextStyle(fontSize: 16),
+            bodyMedium: TextStyle(fontSize: 18),
+            bodyLarge: TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
+            headlineSmall: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            labelMedium: TextStyle(fontSize: 60),
+            labelLarge: TextStyle(fontSize: 100),
+          ).apply(
             bodyColor: Colors.white,
             displayColor: Colors.white,
           ),

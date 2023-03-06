@@ -9,6 +9,7 @@ class HoursForecastWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     final forecast24hours = weatherReport.get24hoursForecastFromNow();
     return Container(
       decoration: const BoxDecoration(
@@ -20,18 +21,15 @@ class HoursForecastWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            children: const [
-              Icon(
+            children: [
+              const Icon(
                 Icons.watch_later_outlined,
                 color: Color.fromARGB(150, 255, 255, 255),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Text(
                 'HOURLY FORECAST',
-                style: TextStyle(
-                  color: Color.fromARGB(150, 255, 255, 255),
-                  fontSize: 16,
-                ),
+                style: textTheme.bodySmall?.copyWith(color: Colors.white.withOpacity(0.6)),
               ),
             ],
           ),
@@ -61,6 +59,7 @@ class _OneHourWeatherWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     // final imageUrl = currentHourWeather.condition.icon.substring(2);
     return SizedBox(
       height: 100,
@@ -69,10 +68,7 @@ class _OneHourWeatherWidget extends StatelessWidget {
         children: [
           Text(
             DateFormat('HH').format(currentHourWeather.time),
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-            ),
+            style: textTheme.bodyMedium,
           ),
           const SizedBox(height: 5),
           // Image.network(imageUrl),
@@ -80,11 +76,8 @@ class _OneHourWeatherWidget extends StatelessWidget {
           const SizedBox(height: 5),
           Text(
             '${currentHourWeather.tempC.round()}°',
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 20,
+            style: textTheme.bodyLarge,
             ),
-          ),
         ],
       ),
     );

@@ -8,21 +8,19 @@ class CurrentWeatherWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Column(
       children: [
         const SizedBox(height: 30),
         Text(
           weatherReport.location.name,
-          style: const TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
+          style: textTheme.headlineSmall,
         ),
         const SizedBox(height: 10),
         Text(
-          DateFormat('EEEEE, MMM d').format(weatherReport.currentWeather.lastUpdated),
-          style: const TextStyle(fontSize: 20, color: Colors.white,),
+          DateFormat('EEEEE, MMM d')
+              .format(weatherReport.currentWeather.lastUpdated),
+          style: textTheme.bodyLarge,
         ),
         const SizedBox(height: 10),
         Row(
@@ -30,29 +28,29 @@ class CurrentWeatherWidget extends StatelessWidget {
           children: [
             Column(
               children: [
-                const Text(
+                Text(
                   'Sunrise',
-                  style: TextStyle(fontSize: 16, color: Colors.white,),
+                  style: textTheme.bodySmall,
                 ),
                 Text(
                   weatherReport.forecast.daysForecast[0].astro.sunrise,
-                  style: const TextStyle(fontSize: 18, color: Colors.white,),
+                  style: textTheme.bodyMedium,
                 ),
               ],
             ),
             Text(
               '${weatherReport.currentWeather.tempC.round()}°',
-              style: const TextStyle(fontSize: 100, color: Colors.white,),
+              style: textTheme.labelLarge,
             ),
             Column(
               children: [
-                const Text(
+                Text(
                   'Sunset',
-                  style: TextStyle(fontSize: 16, color: Colors.white,),
+                  style: textTheme.bodySmall,
                 ),
                 Text(
                   weatherReport.forecast.daysForecast[0].astro.sunset,
-                  style: const TextStyle(fontSize: 18, color: Colors.white,),
+                  style: textTheme.bodyMedium,
                 ),
               ],
             ),
@@ -61,12 +59,12 @@ class CurrentWeatherWidget extends StatelessWidget {
         const SizedBox(height: 10),
         Text(
           weatherReport.currentWeather.condition.text,
-          style: const TextStyle(fontSize: 20, color: Colors.white,),
+          style: textTheme.bodyLarge,
         ),
         const SizedBox(height: 10),
         Text(
           'Wind ${weatherReport.currentWeather.windMph} mhp',
-          style: const TextStyle(fontSize: 18, color: Colors.white,),
+          style: textTheme.bodyMedium,
         ),
       ],
     );

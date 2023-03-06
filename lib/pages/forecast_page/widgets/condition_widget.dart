@@ -27,6 +27,7 @@ class WindWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Container(
       width: 172,
       height: 172,
@@ -47,18 +48,12 @@ class WindWidget extends StatelessWidget {
             const SizedBox(height: 5),
             Text(
               weatherReport.currentWeather.windDir,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-              ),
+              style: textTheme.bodyMedium,
             ),
             const SizedBox(height: 5),
             Text(
               '${weatherReport.currentWeather.windMph} mhp',
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-              ),
+              style: textTheme.bodyLarge,
             ),
           ],
         ),
@@ -73,6 +68,7 @@ class FeelsLikeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Container(
       width: 172,
       height: 172,
@@ -85,20 +81,14 @@ class FeelsLikeWidget extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text(
+            Text(
               'Feels like',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                ),
+              style: textTheme.bodyLarge,
             ),
             const SizedBox(height: 5),
             Text(
               '${weatherReport.currentWeather.feelslikeC.round()}°',
-              style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 60,
-                ),
+              style: textTheme.labelMedium,
             ),
           ],
         ),

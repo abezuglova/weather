@@ -9,6 +9,7 @@ class DaysForecastWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Container(
       decoration: const BoxDecoration(
         color: Color.fromARGB(100, 36, 53, 131),
@@ -19,18 +20,16 @@ class DaysForecastWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            children: const [
-              Icon(
+            children: [
+              const Icon(
                 Icons.watch_later_outlined,
                 color: Color.fromARGB(150, 255, 255, 255),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Text(
                 'DAILY FORECAST',
-                style: TextStyle(
-                  color: Color.fromARGB(150, 255, 255, 255),
-                  fontSize: 16,
-                ),
+                style: textTheme.bodySmall
+                    ?.copyWith(color: Colors.white.withOpacity(0.6)),
               ),
             ],
           ),
@@ -52,6 +51,7 @@ class _OneDayWeatherWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     // final imageUrl = currentHourWeather.condition.icon.substring(2);
     return SizedBox(
       height: 50,
@@ -60,10 +60,7 @@ class _OneDayWeatherWidget extends StatelessWidget {
         children: [
           Text(
             DateFormat('EEEEE').format(oneDayWeather.date),
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-            ),
+            style: textTheme.bodyLarge,
           ),
           Row(
             children: [
@@ -72,10 +69,7 @@ class _OneDayWeatherWidget extends StatelessWidget {
               const SizedBox(width: 16),
               Text(
                 '${oneDayWeather.day.mintempC.round()}°',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                ),
+                style: textTheme.bodyLarge,
               ),
               const SizedBox(width: 5),
               Container(
@@ -89,10 +83,7 @@ class _OneDayWeatherWidget extends StatelessWidget {
               const SizedBox(width: 5),
               Text(
                 '${oneDayWeather.day.maxtempC.round()}°',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                ),
+                style: textTheme.bodyLarge,
               ),
             ],
           ),
