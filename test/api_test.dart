@@ -24,4 +24,14 @@ void main() {
     expect(3, report.forecast.daysForecast.length);
     print(report);
   });
+
+  test('Short weather report get by location name', () async {
+    final dio = Dio(
+      BaseOptions(baseUrl: 'https://weatherapi-com.p.rapidapi.com'),
+    );
+    final repository = WeatherReportRepository(dio);
+    final report =
+        await repository.getShortWeatherReportByLocationName('London');
+    print(report);
+  });
 }
