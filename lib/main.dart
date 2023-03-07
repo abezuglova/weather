@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/i_repository/i_location_repository.dart';
 import 'package:weather_app/i_repository/i_weather_report_repository.dart';
 import 'package:weather_app/pages/forecast_page/forecast_page.dart';
+import 'package:weather_app/pages/locations_weather_page/locations_weather_page.dart';
 import 'package:weather_app/repository/location_repository.dart';
 import 'package:weather_app/repository/weather_report_repository.dart';
 
@@ -49,7 +50,7 @@ class _MyAppState extends State<MyApp> {
             displayColor: Colors.white,
           ),
         ),
-        home: const ForecastPage(),
+        home: const LocationsWeatherPage(),
       ),
     );
   }
