@@ -1,11 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:weather_app/i_repository/i_weather_report_repository.dart';
 import 'package:weather_app/models/weather_report.dart';
 
-class WeatherReportRepository {
+class WeatherReportRepository implements IWeatherReportRepository {
   final Dio dio;
 
   WeatherReportRepository(this.dio);
 
+  @override
   Future<WeatherReport> getWeatherReportByLocationName(String locationName) async {
     final response = await dio.get<Map<String, dynamic>>(
       '/forecast.json',
