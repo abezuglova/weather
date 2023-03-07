@@ -9,7 +9,8 @@ class WeatherReportRepository implements IWeatherReportRepository {
   WeatherReportRepository(this.dio);
 
   @override
-  Future<WeatherReport> getWeatherReportByLocationName(String locationName) async {
+  Future<WeatherReport> getWeatherReportByLocationName(
+      String locationName) async {
     final response = await dio.get<Map<String, dynamic>>(
       '/forecast.json',
       queryParameters: {
@@ -26,9 +27,10 @@ class WeatherReportRepository implements IWeatherReportRepository {
     );
     return WeatherReport.fromJson(response.data!);
   }
-  
+
   @override
-  Future<ShortWeatherReport> getShortWeatherReportByLocationName(String locationName) async {
+  Future<ShortWeatherReport> getShortWeatherReportByLocationName(
+      String locationName) async {
     final response = await dio.get<Map<String, dynamic>>(
       '/current.json',
       queryParameters: {
@@ -44,4 +46,13 @@ class WeatherReportRepository implements IWeatherReportRepository {
     );
     return ShortWeatherReport.fromJson(response.data!);
   }
+
+  @override
+  Future<List<ShortWeatherReport>> getShortWeatherReportListByLocationNames(
+          List<String> locationNames) =>
+      Future.wait(
+        locationNames.map(
+          (name) => getShortWeatherReportByLocationName(name),
+        ),
+      );
 }
