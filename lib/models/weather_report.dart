@@ -74,7 +74,7 @@ class CurrentWeather {
         return 0;
       case 'SW':
         return math.pi * 7 / 4;
-      case 'NN':
+      case 'SS':
         return math.pi * 3 / 2;
       case 'ES':
         return math.pi * 5 / 4;
@@ -82,7 +82,7 @@ class CurrentWeather {
         return math.pi;
       case 'EN':
         return math.pi * 3 / 4;
-      case 'SS':
+      case 'NN':
         return math.pi / 2;
       case 'NW':
         return math.pi / 4;
