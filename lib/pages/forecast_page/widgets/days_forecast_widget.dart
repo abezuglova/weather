@@ -118,10 +118,17 @@ class _OneDayWeatherWidget extends StatelessWidget {
                             child: Container(
                               height: 4,
                               decoration: const BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(50)),
-                                color: Colors.white,
-                              ),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(50)),
+                                  color: Colors.white,
+                                  gradient: LinearGradient(
+                                    begin: Alignment.centerLeft,
+                                    end: Alignment.centerRight,
+                                    colors: [
+                                      Color.fromARGB(255, 47, 147, 220),
+                                      Color.fromARGB(255, 214, 232, 81),
+                                    ],
+                                  )),
                             ),
                           ),
                         if (flexEnd > 0)
