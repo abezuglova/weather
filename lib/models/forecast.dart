@@ -10,8 +10,6 @@ class Forecast {
             .map((json) => ForecastDay.fromJson(json))
             .toList(),
       );
-
-  
 }
 
 class ForecastDay {
@@ -54,7 +52,7 @@ class DayWeather {
     required this.maxwindMph,
     required this.dailyChanceOfRain,
     required this.dailyChanceOfSnow,
-    required this.condition, 
+    required this.condition,
   });
 
   factory DayWeather.fromJson(Map<String, dynamic> json) => DayWeather(

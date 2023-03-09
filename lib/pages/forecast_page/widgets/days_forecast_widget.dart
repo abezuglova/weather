@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_app/models/forecast.dart';
 import 'package:weather_app/models/weather_report.dart';
+import 'dart:math' as math;
 
 class DaysForecastWidget extends StatelessWidget {
   final WeatherReport weatherReport;
@@ -9,6 +10,14 @@ class DaysForecastWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final generalMaxTemp = weatherReport.forecast.daysForecast
+        .map((e) => e.day.maxtempC)
+        .reduce(math.max)
+        .round();
+    final generalMinTemp = weatherReport.forecast.daysForecast
+        .map((e) => e.day.mintempC)
+        .reduce(math.min)
+        .round();
     final textTheme = Theme.of(context).textTheme;
     return Container(
       decoration: const BoxDecoration(
@@ -37,6 +46,8 @@ class DaysForecastWidget extends StatelessWidget {
           ...weatherReport.forecast.daysForecast.map(
             (day) => _OneDayWeatherWidget(
               oneDayWeather: day,
+              generalMaxTemp: generalMaxTemp,
+              generalMinTemp: generalMinTemp,
             ),
           ),
         ],
@@ -47,12 +58,24 @@ class DaysForecastWidget extends StatelessWidget {
 
 class _OneDayWeatherWidget extends StatelessWidget {
   final ForecastDay oneDayWeather;
-  const _OneDayWeatherWidget({super.key, required this.oneDayWeather});
+  final int generalMaxTemp;
+  final int generalMinTemp;
+  const _OneDayWeatherWidget(
+      {super.key,
+      required this.oneDayWeather,
+      required this.generalMaxTemp,
+      required this.generalMinTemp});
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final imageUrl = oneDayWeather.day.condition.iconUrl;
+    final dayMaxTemp = oneDayWeather.day.maxtempC.round();
+    final dayMinTemp = oneDayWeather.day.mintempC.round();
+    final flexStart = dayMinTemp - generalMinTemp;
+    final flexTemp = dayMaxTemp - dayMinTemp;
+    final flexEnd = generalMaxTemp - dayMaxTemp;
+
     return SizedBox(
       height: 50,
       child: Row(
@@ -67,21 +90,52 @@ class _OneDayWeatherWidget extends StatelessWidget {
               Image.network(imageUrl),
               const SizedBox(width: 16),
               Text(
-                '${oneDayWeather.day.mintempC.round()}°',
+                '$dayMinTemp°',
                 style: textTheme.bodyLarge,
               ),
               const SizedBox(width: 5),
-              Container(
-                width: 100,
-                height: 3.5,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
+              Stack(
+                children: [
+                  Container(
+                    width: 100,
+                    height: 4,
+                    decoration: const BoxDecoration(
+                      color: Color.fromARGB(100, 36, 53, 131),
+                      borderRadius: BorderRadius.all(Radius.circular(50)),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 100,
+                    child: Row(
+                      children: [
+                        if (flexStart > 0)
+                          Spacer(
+                            flex: flexStart,
+                          ),
+                        if (flexTemp > 0)
+                          Flexible(
+                            flex: flexTemp,
+                            child: Container(
+                              height: 4,
+                              decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(50)),
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        if (flexEnd > 0)
+                          Spacer(
+                            flex: flexEnd,
+                          ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(width: 5),
               Text(
-                '${oneDayWeather.day.maxtempC.round()}°',
+                '$dayMaxTemp°',
                 style: textTheme.bodyLarge,
               ),
             ],

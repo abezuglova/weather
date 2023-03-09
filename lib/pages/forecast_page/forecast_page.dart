@@ -15,7 +15,7 @@ class ForecastPage extends StatelessWidget {
       body: BlocProvider<ForecastCubit>(
         create: (context) => ForecastCubit(
           context.read<IWeatherReportRepository>(),
-        )..onPageOpened('Rostov'),
+        )..onPageOpened('Moskau'),
         child: BlocBuilder<ForecastCubit, ForecastState>(
           builder: (context, state) {
             if (state is ForecastLoadSuccess) {
