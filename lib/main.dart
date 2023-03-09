@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
             displayColor: Colors.white,
           ),
         ),
-        home: const LocationsWeatherPage(),
+        home: const ForecastPage(),
       ),
     );
   }

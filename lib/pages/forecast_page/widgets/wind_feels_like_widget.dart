@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/models/weather_report.dart';
 
-class ConditionWidget extends StatelessWidget {
+class WindFeelsLikeWidget extends StatelessWidget {
   final WeatherReport weatherReport;
-  const ConditionWidget({super.key, required this.weatherReport});
+  const WindFeelsLikeWidget({super.key, required this.weatherReport});
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +40,13 @@ class WindWidget extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(
-              Icons.arrow_circle_right_outlined,
-              color: Colors.white,
-              size: 48,
+            Transform.rotate(
+              angle: weatherReport.currentWeather.getWindIconRotationAngle(),
+              child: const Icon(
+                Icons.arrow_circle_right_outlined,
+                color: Colors.white,
+                size: 48,
+              ),
             ),
             const SizedBox(height: 5),
             Text(

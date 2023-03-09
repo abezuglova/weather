@@ -31,15 +31,15 @@ class CurrentHourWeather {
 
 class Condition {
   final String text;
-  final String icon;
+  final String iconUrl;
 
   Condition({
     required this.text,
-    required this.icon,
+    required this.iconUrl,
   });
 
   factory Condition.fromJson(Map<String, dynamic> json) => Condition(
         text: json['text'],
-        icon: json['icon'],
+        iconUrl: 'https:${json['icon']}',
       );
 }

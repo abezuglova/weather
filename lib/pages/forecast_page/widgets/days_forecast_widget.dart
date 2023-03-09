@@ -15,7 +15,7 @@ class DaysForecastWidget extends StatelessWidget {
         color: Color.fromARGB(100, 36, 53, 131),
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -52,7 +52,7 @@ class _OneDayWeatherWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    // final imageUrl = currentHourWeather.condition.icon.substring(2);
+    final imageUrl = oneDayWeather.day.condition.iconUrl;
     return SizedBox(
       height: 50,
       child: Row(
@@ -64,8 +64,7 @@ class _OneDayWeatherWidget extends StatelessWidget {
           ),
           Row(
             children: [
-              // Image.network(imageUrl),
-              const Icon(Icons.cloud, size: 24, color: Colors.white),
+              Image.network(imageUrl),
               const SizedBox(width: 16),
               Text(
                 '${oneDayWeather.day.mintempC.round()}°',

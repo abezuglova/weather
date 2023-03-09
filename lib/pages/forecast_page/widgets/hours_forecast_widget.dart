@@ -16,7 +16,7 @@ class HoursForecastWidget extends StatelessWidget {
         color: Color.fromARGB(100, 36, 53, 131),
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -35,7 +35,7 @@ class HoursForecastWidget extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           SizedBox(
-            height: 100,
+            height: 114,
             child: ListView.separated(
               itemBuilder: (BuildContext context, int index) =>
                   _OneHourWeatherWidget(
@@ -60,9 +60,8 @@ class _OneHourWeatherWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    // final imageUrl = currentHourWeather.condition.icon.substring(2);
+    final imageUrl = currentHourWeather.condition.iconUrl;
     return SizedBox(
-      height: 100,
       width: 60,
       child: Column(
         children: [
@@ -71,8 +70,7 @@ class _OneHourWeatherWidget extends StatelessWidget {
             style: textTheme.bodyMedium,
           ),
           const SizedBox(height: 5),
-          // Image.network(imageUrl),
-          const Icon(Icons.cloud, size: 36, color: Colors.white),
+          Image.network(imageUrl),
           const SizedBox(height: 5),
           Text(
             '${currentHourWeather.tempC.round()}°',

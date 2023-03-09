@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/models/weather_report.dart';
-import 'package:weather_app/pages/forecast_page/widgets/condition_widget.dart';
+import 'package:weather_app/pages/forecast_page/widgets/wind_feels_like_widget.dart';
 import 'package:weather_app/pages/forecast_page/widgets/current_weather_widget.dart';
 import 'package:weather_app/pages/forecast_page/widgets/days_forecast_widget.dart';
 import 'package:weather_app/pages/forecast_page/widgets/hours_forecast_widget.dart';
@@ -22,7 +22,7 @@ class ForecastScreen extends StatelessWidget {
           const SizedBox(height: 16),
           DaysForecastWidget(weatherReport: weatherReport),
           const SizedBox(height: 16),
-          ConditionWidget(weatherReport: weatherReport),
+          WindFeelsLikeWidget(weatherReport: weatherReport),
         ],
       ),
     );

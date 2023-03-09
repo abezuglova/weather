@@ -8,19 +8,20 @@ class LocationsShortWeatherWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final imageUrl = shortWeatherReport.currentWeather.condition.iconUrl;
     final textTheme = Theme.of(context).textTheme;
     return Container(
       decoration: const BoxDecoration(
         color: Color.fromARGB(100, 36, 53, 131),
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
-              const Icon(Icons.cloud, color: Colors.white, size: 36),
+              Image.network(imageUrl),
               const SizedBox(width: 16),
               Text(
                 shortWeatherReport.location.name,
