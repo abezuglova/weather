@@ -7,7 +7,8 @@ import 'package:weather_app/pages/forecast_page/screens/forecast_screen.dart';
 import 'package:weather_app/pages/forecast_page/screens/loading_screen.dart';
 
 class ForecastPage extends StatelessWidget {
-  const ForecastPage({super.key});
+  final String locationName;
+  const ForecastPage({super.key, required this.locationName});
 
   @override
   Widget build(BuildContext context) {
@@ -15,17 +16,33 @@ class ForecastPage extends StatelessWidget {
       body: BlocProvider<ForecastCubit>(
         create: (context) => ForecastCubit(
           context.read<IWeatherReportRepository>(),
-        )..onPageOpened('Moskau'),
-        child: BlocBuilder<ForecastCubit, ForecastState>(
-          builder: (context, state) {
-            if (state is ForecastLoadSuccess) {
-              return ForecastScreen(weatherReport: state.weatherReport);
-            } else if (state is ForecastLoadFailure) {
-              return const ErrorScreen();
-            } else {
-              return const LoadingScreen();
-            }
-          },
+        )..onPageOpened(locationName),
+        child: SafeArea(
+          child: Stack(
+            children: [
+              Expanded(
+                child: BlocBuilder<ForecastCubit, ForecastState>(
+                  builder: (context, state) {
+                    if (state is ForecastLoadSuccess) {
+                      return ForecastScreen(weatherReport: state.weatherReport);
+                    } else if (state is ForecastLoadFailure) {
+                      return const ErrorScreen();
+                    } else {
+                      return const LoadingScreen();
+                    }
+                  },
+                ),
+              ),
+              IconButton(
+                onPressed: () => Navigator.of(context).pop(),
+                icon: const Icon(
+                  Icons.arrow_back,
+                  size: 36,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

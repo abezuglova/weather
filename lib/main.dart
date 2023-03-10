@@ -7,6 +7,7 @@ import 'package:weather_app/pages/forecast_page/forecast_page.dart';
 import 'package:weather_app/pages/locations_weather_page/locations_weather_page.dart';
 import 'package:weather_app/repository/location_repository.dart';
 import 'package:weather_app/repository/weather_report_repository.dart';
+import 'package:weather_app/routes.dart';
 
 void main() async {
   runApp(const MyApp());
@@ -22,7 +23,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final dio =
       Dio(BaseOptions(baseUrl: 'https://weatherapi-com.p.rapidapi.com'));
-      
+
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
@@ -50,7 +51,9 @@ class _MyAppState extends State<MyApp> {
             displayColor: Colors.white,
           ),
         ),
-        home: const ForecastPage(),
+        home: const LocationsWeatherPage(),
+        routes: AppRoutes.routes,
+        initialRoute: AppRoutes.initialRoute,
       ),
     );
   }
