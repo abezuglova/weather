@@ -10,7 +10,8 @@ class ShortWeatherReport {
     required this.currentWeather,
   });
 
-  factory ShortWeatherReport.fromJson(Map<String, dynamic> json) => ShortWeatherReport(
+  factory ShortWeatherReport.fromJson(Map<String, dynamic> json) =>
+      ShortWeatherReport(
         location: Location.fromJson(json['location']),
         currentWeather: CurrentWeather.fromJson(json['current']),
       );

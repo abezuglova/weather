@@ -15,11 +15,23 @@ class LocationsWeatherPage extends StatelessWidget {
       body: BlocProvider<LocationsWeatherCubit>(
         create: (context) => LocationsWeatherCubit(
           context.read<IWeatherReportRepository>(),
-        )..onPageOpened(['Rostov', 'Eupatoria', 'Novocherkassk', 'London', 'Paris', 'Rio', 'Moskau', 'Saint-Petersburg', 'Simferopol', 'Sevastopol']),
+        )..onPageOpened([
+            'Rostov',
+            'Eupatoria',
+            'Novocherkassk',
+            'London',
+            'Paris',
+            'Rio',
+            'Moskau',
+            'Saint-Petersburg',
+            'Simferopol',
+            'Sevastopol',
+          ]),
         child: BlocBuilder<LocationsWeatherCubit, LocationsWeatherState>(
           builder: (context, state) {
             if (state is LocationsWeatherLoadSuccess) {
-              return LocationsWeatherScreen(shortWeatherReports: state.shortWeatherReports);
+              return LocationsWeatherScreen(
+                  shortWeatherReports: state.shortWeatherReports);
             } else if (state is LocationsWeatherLoadFailure) {
               return const ErrorScreen();
             } else {

@@ -30,11 +30,11 @@ class LocationRepository implements ILocationRepository {
     await Future.delayed(const Duration(seconds: 1));
     return [
       Location(
-          name: 'Rostov-Na-Donu', region: 'Rostov', country: 'Russia', lat: 47.24, lon: 39.71),
+          name: 'Rostov-Na-Donu', region: 'Rostov', country: 'Russia', latitude: 47.24, longitude: 39.71),
       Location(
-          name: 'Eupatoria', region: 'Krym', country: 'Ukraine', lat: 45.2, lon: 33.36),
+          name: 'Eupatoria', region: 'Krym', country: 'Ukraine', latitude: 45.2, longitude: 33.36),
       Location(
-          name: 'Novocherkassk', region: 'Rostov', country: 'Russia', lat: 47.42, lon: 40.09),
+          name: 'Novocherkassk', region: 'Rostov', country: 'Russia', latitude: 47.42, longitude: 40.09),
     ];
   }
 }
