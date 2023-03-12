@@ -22,7 +22,7 @@ class WeatherReport {
 
   List<CurrentHourWeather> get24hoursForecastFromNow() {
     final forecast24hours = <CurrentHourWeather>[];
-    final currentTime = DateTime.now().hour + 4;
+    final currentTime = DateTime.now().hour - 4;
     for (int index = currentTime;
         index < forecast.daysForecast[0].hours.length;
         index++) {
@@ -65,10 +65,9 @@ class CurrentWeather {
       );
 
   double getWindIconRotationAngle() {
-    final String windDirLetters =
-        ({...windDir.split('')}.toList()
-              ..sort(((a, b) => a.compareTo(b))))
-            .join('');
+    final String windDirLetters = ({...windDir.split('')}.toList()
+          ..sort(((a, b) => a.compareTo(b))))
+        .join('');
     switch (windDirLetters) {
       case 'WW':
         return 0;

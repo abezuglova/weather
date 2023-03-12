@@ -26,7 +26,7 @@ class LocationRepository implements ILocationRepository {
   }
 
   @override
-  Future<List<Location>> getSavedLocations(String locationName) async {
+  Future<List<Location>> getSavedLocations() async {
     await Future.delayed(const Duration(seconds: 1));
     return [
       Location(
