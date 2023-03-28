@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:weather_app/i_repository/i_weather_report_repository.dart';
 import 'package:weather_app/models/short_weather_report.dart';
 import 'package:weather_app/models/weather_report.dart';
@@ -44,7 +47,13 @@ class WeatherReportRepository implements IWeatherReportRepository {
         },
       ),
     );
-    return ShortWeatherReport.fromJson(response.data!);
+    return compute(
+      (data) {
+        sleep(const Duration(seconds: 1));
+        return ShortWeatherReport.fromJson(response.data!);
+      },
+      response.data!,
+    );
   }
 
   @override

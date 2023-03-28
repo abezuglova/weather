@@ -22,7 +22,7 @@ class WeatherReport {
 
   List<CurrentHourWeather> get24hoursForecastFromNow() {
     final forecast24hours = <CurrentHourWeather>[];
-    final currentTime = DateTime.now().hour - 4;
+    final currentTime = DateTime.now().hour;
     for (int index = currentTime;
         index < forecast.daysForecast[0].hours.length;
         index++) {
